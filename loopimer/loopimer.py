@@ -166,3 +166,19 @@ class timer:
         self.counter=0
         self._running_thread=loop_trigger
         loop_trigger.start() 
+        
+        
+class loopimer:
+    def __init__(self, *args,**kwargs):
+        self.kwargs=kwargs
+        if(('target' in self.kwargs) & ('n_splits' in self.kwargs)):
+            self.ltimer=timer(self.kwargs['target'],self.kwargs['n_splits'])
+        else:
+            self.ltimer=timer()
+    def __call__(self, func):
+        def wrapper(*args,**kwargs):
+            self.ltimer.apply_to(func,**kwargs)
+            self.ltimer.startTimedLoop(self.kwargs['every'])
+            return
+
+        return wrapper
