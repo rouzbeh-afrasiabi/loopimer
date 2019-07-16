@@ -45,6 +45,7 @@ class timer:
         self._kwargs=None
         self._timer_thread=None
         self._running_thread=None
+        self.counter=0
         #put slices in queue
         for item in self._input:
             self.sequence.put(item)
@@ -153,6 +154,7 @@ class timer:
                     if(self.pause>0 and not self._timerEnd.isSet()):
                         continue
                     elif(self.pause==0):
+                        self.counter=self.counter+1
                         self._target_function(self,**self._kwargs)
                 else:
                     break
@@ -161,5 +163,6 @@ class timer:
         loop_trigger=threading.Thread(target=self._timedloopTrigger,args=(every,))
         loop_trigger.setDaemon(True)
         self.keep_alive=True
+        self.counter=0
         self._running_thread=loop_trigger
         loop_trigger.start() 
