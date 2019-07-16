@@ -9,7 +9,7 @@ import os
 
 
 class timer:
-    def __init__(self,target,n_splits):
+    def __init__(self,target=None,n_splits=0):
 
         def _nslice(s, n, truncate=False, reverse=False):
             """Splits s into n-sized chunks, optionally reversing the chunks."""
@@ -23,7 +23,10 @@ class timer:
         self.loop=False
         self.print_it=False
         self.start_time=0
-        self._input=_nslice(target,n_splits)
+        if(target):
+            self._input=_nslice(target,n_splits)
+        else:
+            self._input=[0]
         self.sequence = queue.Queue()
         self.minutes=0
         self.seconds=0
