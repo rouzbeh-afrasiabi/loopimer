@@ -66,7 +66,16 @@ def test(loop,):
         loop.kill()
 test()   
 ```
-
+<b>Stopping the loop using loop elapsed time</b>
+```
+@loopimer(every=1)
+def test(loop,):
+    print(loop.elapsed,loop.total_seconds)
+    if(loop.total_seconds>=6):
+        print('loopimer')
+        loop.kill()
+test()  
+```
 
 
 ```
