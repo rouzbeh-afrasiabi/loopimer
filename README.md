@@ -56,7 +56,16 @@ def test(loop,):
     loop.kill()
 test()    
 ```
-
+<b>Stopping the loop using loop counter</b>
+```
+@loopimer(every=1)
+def test(loop,):
+    print(loop.counter)
+    if(loop.counter==10):
+        print('loopimer')
+        loop.kill()
+test()   
+```
 
 
 
