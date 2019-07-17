@@ -12,7 +12,9 @@ Package for time-controlled execution of a looping function using threading. All
  - math
  - sys
  - os
-
+## Decorators:
+ - loopimer
+ 
 ## Examples
 ```
 from loopimer import *
