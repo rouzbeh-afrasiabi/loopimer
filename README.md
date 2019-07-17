@@ -16,6 +16,7 @@ Package for time-controlled execution of a looping function using threading. All
  - loopimer
  
 ## Examples
+### Simple Usage: 
 ```
 from loopimer import *
 
