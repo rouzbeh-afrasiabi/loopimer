@@ -48,7 +48,7 @@ The first variable passed to the target function allows you to control the loop 
 The loop starts authomatically when the function is called and will run indefinity. You can control the loop and how the function is executed using the placeholder variable. This is currently only possible when declaring the target function.
 </p>
 
-<b>Stopping the loop<b>
+<b>Stopping the loop</b>
 ```
 @loopimer(every=5)
 def test(loop,): 
