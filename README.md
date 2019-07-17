@@ -45,7 +45,7 @@ def test(loop,t):
         #the loop can be terminated by calling kill()
         loop.kill()
 
-#Simply call the function and the loop will begin. <b>When calling the function, you don't have to provide the placeholder variable name.</b>
+#Simply call the function and the loop will begin. When calling the function, you don't have to provide the placeholder variable name.
 test(t=1)
         
 ```
