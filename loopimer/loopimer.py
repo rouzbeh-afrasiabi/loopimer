@@ -48,6 +48,7 @@ class timer:
         self.start_time=0
         self.now=0
         self.elapsed=dt.timedelta(hours=0,minutes=0,seconds=0,milliseconds=0 ,microseconds=0)
+        self.total_seconds=0
         #put slices in queue
         for item in self._input:
             self.sequence.put(item)
@@ -139,6 +140,7 @@ class timer:
                 if(self._target_function and self.keep_alive):
                     self.now=dt.datetime.now()
                     self.elapsed=self.now-self.start_time
+                    self.total_seconds=self.elapsed.total_seconds()
                 else:
                     break        
         
