@@ -29,8 +29,8 @@ The first variable  passed to the target function allows you to control the loop
 
 ```
 @loopimer(every=1)
-def test(loop,t):
-
+def test(loop,t): 
+#variable name 'loop' is a placeholder, you can change this name to anything you want, however, the first variable during function declaration will be used as the placeholder.
     #it is reccommended that you use the s_print() function for printing to avoid 
     loop.s_print(loop.now,' ',loop.elapsed)
     if(loop.counter%3==0):
