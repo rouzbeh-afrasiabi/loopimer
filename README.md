@@ -4,7 +4,7 @@ Package for time-controlled execution of a looping function using threading. All
 </p>  
 
 ## Requirements
-### Python Standard Library
+### Python Standard Libraries
  - threading
  - time
  - datetime
@@ -18,13 +18,13 @@ Package for time-controlled execution of a looping function using threading. All
 from loopimer import *
 
 @loopimer(every=1)
-def test(timer,t):
-    timer.s_print(timer.now,' ',timer.elapsed)
-    if(timer.counter%3==0):
-        timer.pause=20
-    if(timer.counter%5==0):
-        timer.pause=2
-    if(timer.counter==20):
-        timer.kill()
+def test(loop,t):
+    loop.s_print(loop.now,' ',loop.elapsed)
+    if(loop.counter%3==0):
+        loop.pause=20
+    if(loop.counter%5==0):
+        loop.pause=2
+    if(loop.counter==20):
+        loop.kill()
 
 ```
