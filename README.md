@@ -17,19 +17,20 @@ Package for time-controlled execution of a looping function using threading. All
  
 ## Examples
 ### Simple Usage: 
-```
+
 '''
 In the simplest usage case you pass a value in seconds to the decorator through the 'every' variable. This will modify the
 function to execute every x seconds as an indefinite loop.
 '''
-
+'''
 @loopimer(every=1)
-
+'''
 
 '''
 The first variable  passed to the target function allows you to control the loop running in the background. You can choose any 
 name for this variable, but it is important that you pass a variable name as a placeholder when declaring your function. 
 Upon calling the function this placeholder will be linked to the related thread controling the loop.
+'''
 '''
 def test(loop,t):
     #it is reccommended that you use the s_print() function for printing to avoid 
@@ -42,5 +43,4 @@ def test(loop,t):
     if(loop.counter==20):
         #the loop can be terminated by calling kill()
         loop.kill()
-
-```
+'''
