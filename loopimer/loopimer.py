@@ -84,7 +84,7 @@ class timer:
         self._timerEnd.set()
         
 
-    def start(self,print_it=False):
+    def _start(self,print_it=False):
         if(not self.loop):
             self.print_it=print_it
             self.start_time=dt.datetime.now()
@@ -145,7 +145,7 @@ class timer:
                 time.sleep(every)
                 if(self.pause>0):
                     self.s_print("Process suspended for ", self.pause," seconds")
-                    self.start(True)
+                    self._start(True)
                     time.sleep(self.pause)
                     self.pause=0
                     self.stop()
