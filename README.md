@@ -45,7 +45,7 @@ The loop starts authomatically when the function is called and will run indefini
 
 <p align="justify">
  <b>
-Please note that when calling the target function we don't provide the placeholder variable name.
+Please note that when calling the target function we don't pass the placeholder variable name to the function.
  </b>
 </p>
 
