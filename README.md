@@ -80,6 +80,7 @@ test()
 <p align="justify">
 A sliceable variable can be passed to the loopimer decorator for processing through the 'target' variable. This sliceable variable can then be split into slices of 'n_splits' size. The slices are placed in a queue and can be accessed through the 'sequence' attribute of the loop (loop.squence). This attribute is an instance of <a href='https://docs.python.org/3/library/queue.html'>Queue</a>.
 </p>
+
 ```
 target=[i for i in range(0,100,1)]
 n_splits=10 
