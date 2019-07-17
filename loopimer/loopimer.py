@@ -22,30 +22,32 @@ class timer:
                 yield (s)
         self.loop=False
         self.print_it=False
-        self.start_time=0
+        self._start_time=0
         if(target):
             self._input=_nslice(target,n_splits)
         else:
             self._input=[0]
         self.sequence = queue.Queue()
-        self.minutes=0
-        self.seconds=0
-        self.hours=0
-        self.total_seconds=0
-        self.timedelta=dt.timedelta(hours=0,minutes=0,seconds=0,milliseconds=0 ,microseconds=0)
-        self.strftime=0
+        self._minutes=0
+        self._seconds=0
+        self._hours=0
+        self._total_seconds=0
+        self._timedelta=dt.timedelta(hours=0,minutes=0,seconds=0,milliseconds=0 ,microseconds=0)
+        self._strftime=0
         self._activeEvent=False
         self.lock = threading.Lock() 
         self._timerEnd=threading.Event()
         self._killit=threading.Event()
         self.keep_alive=False
-        self.delay=0
         self._target_function=None
         self.pause=0
         self._kwargs=None
         self._timer_thread=None
         self._running_thread=None
         self.counter=0
+        self.start_time=0
+        self.now=0
+        self.elapsed=dt.timedelta(hours=0,minutes=0,seconds=0,milliseconds=0 ,microseconds=0)
         #put slices in queue
         for item in self._input:
             self.sequence.put(item)
@@ -70,14 +72,14 @@ class timer:
                 break
             else:
                 time.sleep(1)
-                td=dt.datetime.now()-self.start_time
-                self.timedelta=td
-                self.hours, remainder = divmod(td.seconds, 3600)
-                self.minutes, self.seconds = divmod(remainder, 60)
-                self.total_seconds=td.total_seconds()
-                self.strftime="{:0>2}:{:0>2}:{:0>2}".format(int(self.hours),int(self.minutes),int(self.seconds))
+                td=dt.datetime.now()-self._start_time
+                self._timedelta=td
+                self._hours, remainder = divmod(td.seconds, 3600)
+                self._minutes, self._seconds = divmod(remainder, 60)
+                self._total_seconds=td.total_seconds()
+                self._strftime="{:0>2}:{:0>2}:{:0>2}".format(int(self._hours),int(self._minutes),int(self._seconds))
                 if (self.print_it): 
-                    self.s_print(self.strftime,end='\r')
+                    self.s_print(self._strftime,end='\r')
         if (self.print_it):
             self.s_print('\r')
         self.loop=False
@@ -87,7 +89,7 @@ class timer:
     def _start(self,print_it=False):
         if(not self.loop):
             self.print_it=print_it
-            self.start_time=dt.datetime.now()
+            self._start_time=dt.datetime.now()
 
             main_trigger=threading.Thread(target=self._trigger)
             main_trigger.setDaemon(True)
@@ -109,7 +111,7 @@ class timer:
     
     def _eventTrigger(self,total_seconds):
         while (not self.sequence.empty()):
-            if(self.total_seconds>=total_seconds):
+            if(self._total_seconds>=total_seconds):
 #                 self.s_print('triggered',self.loop)
                 self.stop()
                 break
@@ -129,6 +131,16 @@ class timer:
                     self._target_function(self,**self._kwargs)
                 else:
                     break
+    def _loop_timer(self,):
+        while (not self.sequence.empty()):
+            if(not self.keep_alive):
+                break
+            else:
+                if(self._target_function and self.keep_alive):
+                    self.now=dt.datetime.now()
+                    self.elapsed=self.now-self.start_time
+                else:
+                    break        
         
     def startSimpleLoop(self,every=None):
         loop_trigger=threading.Thread(target=self._simpleloopTrigger,args=(every,))
@@ -162,10 +174,15 @@ class timer:
     def startTimedLoop(self,every=None):
         loop_trigger=threading.Thread(target=self._timedloopTrigger,args=(every,))
         loop_trigger.setDaemon(True)
+        loop_timer_trigger=threading.Thread(target=self._loop_timer,args=())
+        loop_timer_trigger.setDaemon(True)
         self.keep_alive=True
         self.counter=0
         self._running_thread=loop_trigger
+        self.start_time=dt.datetime.now()
         loop_trigger.start() 
+        loop_timer_trigger.start()
+        loop_trigger.join()
         
         
 class loopimer:
