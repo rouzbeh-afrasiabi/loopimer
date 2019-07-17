@@ -35,16 +35,39 @@ def test(loop,):
 test()    
 ```
 <p align="justify">
-The first variable passed to the target function allows you to control the loop running in the background (called 'loop' in the examples on this page). You can choose any name for this variable, but it is important that you pass a variable name as a placeholder to the target function when declaring your desired function. The first variable name passed to your target function during declaration will always be reserved for the loop that will be running is the background. Upon calling the target function, this placeholder will be linked to the related thread controling the loop.
+ <b>
+Please note that when calling the target function we don't pass the placeholder variable name to the function.
+ </b>
 </p>
 
 <p align="justify">
-The loop starts authomatically when the function is called and will run indefinity. You can control the loop and how the function is executed using the placeholder variable. This is currently only possible when declaring the target function. 
+The first variable passed to the target function allows you to control the loop running in the background (called 'loop' in the examples on this page). You can choose any name for this variable, but it is important that you pass a variable name as a placeholder to the target function when declaring your desired function. The first variable name passed to your target function during declaration will always be reserved for the loop that will be running in the background. Upon calling the target function, this placeholder will be linked to the related thread controlling the loop.
 </p>
 
 <p align="justify">
-Please note that when calling the target function we don't provide the placeholder variable name.
+The loop starts authomatically when the function is called and will run indefinity. You can control the loop and how the function is executed using the placeholder variable. This is currently only possible when declaring the target function.
 </p>
+
+<b>Stopping the loop</b>
+```
+@loopimer(every=5)
+def test(loop,): 
+    print('loopimer')
+    loop.kill()
+test()    
+```
+<b>Stopping the loop using loop counter</b>
+```
+@loopimer(every=1)
+def test(loop,):
+    print(loop.counter)
+    if(loop.counter==10):
+        print('loopimer')
+        loop.kill()
+test()   
+```
+
+
 
 ```
 @loopimer(every=1)
