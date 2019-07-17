@@ -1,7 +1,17 @@
 # loopimer
 <p align="justify">
-Package for time-controlled execution of a function in a loop using threading. Allows control over the time between each function execution and the introduction of time delays/pause. Furthermore, the package utilizes Queues and slicing to provide the user with the ability to control the execution of the looping function using queued slices. The package was originally developed for working with rate limited APIs.
+Package for time-controlled execution of a looping function using threading. Allows control over the time between each function execution and the introduction of time delays/pauses. Furthermore, the package utilizes Queues and slicing to provide the user with the ability to control the execution of the looping function using queued slices. The package was originally developed for working with rate limited APIs and only uses python standard libraries.
 </p>  
+
+## Requirements
+ - threading
+ - time
+ - datetime as dt
+ - threading
+ - queue
+ - math
+ - sys
+ - os
 
 ## Examples
 ```
