@@ -6,7 +6,7 @@ Package for time-controlled execution of a looping function using threading. All
 ## Requirements
  - threading
  - time
- - datetime as dt
+ - datetime
  - threading
  - queue
  - math
