@@ -9,8 +9,9 @@ import os
 
 
 class timer:
-    def __init__(self,target=None,n_splits=0):
-
+    def __init__(self,**kwargs):
+        
+        self.__kwargs=kwargs
         def _nslice(s, n, truncate=False, reverse=False):
             """Splits s into n-sized chunks, optionally reversing the chunks."""
             assert n > 0
@@ -23,7 +24,7 @@ class timer:
         self._loop=False
         self.print_it=False
         self._start_time=0
-        if(target is not None):
+        if(('target' in self.__kwargs) and (target is not None)):
             self._input=_nslice(target,n_splits)
         else:
             self._input=[0]
@@ -52,6 +53,10 @@ class timer:
         #put slices in queue
         for item in self._input:
             self.sequence.put(item)
+        if(not any([key in self.__dict__ for key in self.__kwargs.keys()])):
+            self.__dict__.update(kwargs)
+        else:
+            raise ValueError('naming conflict detected', [ key for key in kwargs.keys() if(key in self.__dict__)])
         
         
     def apply_to(self,function,**kwargs):
@@ -190,10 +195,7 @@ class timer:
 class loopimer:
     def __init__(self, *args,**kwargs):
         self.kwargs=kwargs
-        if(('target' in self.kwargs) & ('n_splits' in self.kwargs)):
-            self.ltimer=timer(self.kwargs['target'],self.kwargs['n_splits'])
-        else:
-            self.ltimer=timer()
+        self.ltimer=timer(**self.kwargs)
     def __call__(self, func):
         def wrapper(*args,**kwargs):
             self.ltimer.apply_to(func,**kwargs)
