@@ -81,7 +81,9 @@ test()
 A sliceable variable can be passed to the loopimer decorator through the 'target' variable for processing. This sliceable variable is then split into slices of 'n_splits' size. The slices are placed in a queue and can be accessed through the 'sequence' attribute of the loop (loop.squence). This attribute is an instance of <a href='https://docs.python.org/3/library/queue.html'>Queue</a>. The loop automatically stops when no items are left in the queue.
 </p>
 
-<b>When a target  is not provided the queue is automatically filled with one item containing a zero. This means that the loop will stop after one cycle if the queue is accessed.</b>
+<p align="justify">
+ When a target  is not provided the queue is automatically filled with one item containing a zero. This means that the loop will stop after one cycle if the queue is accessed.</p>
+
 ```python
 @loopimer(every=1)
 def test(loop,):
