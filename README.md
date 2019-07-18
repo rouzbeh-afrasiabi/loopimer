@@ -85,12 +85,26 @@ test()
 
 <b>Adding custom variables to the loop</b>
 <p align="justify">
-The loop placeholder variable is an open class and you can add new attributes to it. However, it is important to use attribute names that don't cause an attribute naming conflict with attribute names already being used.
+The loop placeholder variable is an open class and you can add new attributes to it. However, it is important to use attribute names that don't cause an naming conflict with names already being used by the class.
 </p>
 
+<p align="justify">
+
+attributes can be created inside the function or passed to the decorator instead.</p>
 ```python
 from random import randrange
 
+@loopimer(every=1,i=0)
+def test(loop,):
+    print(loop.i)
+    if(loop.i==10):
+        print('loopimer')
+        loop.kill()
+    loop.i+=1
+test()
+```
+
+```python
 @loopimer(every=1)
 def test(loop,):
     loop.k=randrange(100)
@@ -99,6 +113,8 @@ def test(loop,):
         loop.kill()
 test()     
 ```
+
+
 
 <b>Using queue</b>
 <p align="justify">
