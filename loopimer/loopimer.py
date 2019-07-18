@@ -35,10 +35,10 @@ class timer:
         self._timedelta=dt.timedelta(hours=0,minutes=0,seconds=0,milliseconds=0 ,microseconds=0)
         self._strftime=0
         self._activeEvent=False
-        self.lock = threading.Lock() 
+        self._lock = threading.Lock() 
         self._timerEnd=threading.Event()
         self._killit=threading.Event()
-        self.keep_alive=False
+        self._keep_alive=False
         self._target_function=None
         self.pause=0
         self._kwargs=None
@@ -59,7 +59,7 @@ class timer:
         self._kwargs=kwargs
         
     def s_print(self,*a, **b):
-        with (self.lock):
+        with (self._lock):
             print(*a, **b)
             
         
@@ -105,8 +105,8 @@ class timer:
         return(self.sequence.get())
     
     def kill(self,):
-        while (self.keep_alive):
-            self.keep_alive=False
+        while (self._keep_alive):
+            self._keep_alive=False
             if(self.loop):
                 self.loop=False
     
@@ -124,20 +124,20 @@ class timer:
 
     def _simpleloopTrigger(self,every):
         while (not self.sequence.empty()):
-            if(not self.keep_alive):
+            if(not self._keep_alive):
                 break
             else:
                 time.sleep(every)
-                if(self._target_function and self.keep_alive):
+                if(self._target_function and self._keep_alive):
                     self._target_function(self,**self._kwargs)
                 else:
                     break
     def _loop_timer(self,):
         while (not self.sequence.empty()):
-            if(not self.keep_alive):
+            if(not self._keep_alive):
                 break
             else:
-                if(self._target_function and self.keep_alive):
+                if(self._target_function and self._keep_alive):
                     self.now=dt.datetime.now()
                     self.elapsed=self.now-self.start_time
                     self.total_seconds=self.elapsed.total_seconds()
@@ -147,13 +147,13 @@ class timer:
     def startSimpleLoop(self,every=None):
         loop_trigger=threading.Thread(target=self._simpleloopTrigger,args=(every,))
         loop_trigger.setDaemon(True)
-        self.keep_alive=True
+        self._keep_alive=True
         self._running_thread=loop_trigger
         loop_trigger.start() 
         
     def _timedloopTrigger(self,every):
         while (not self.sequence.empty()):
-            if(not self.keep_alive):
+            if(not self._keep_alive):
                 break
             else:
                 time.sleep(every)
@@ -164,7 +164,7 @@ class timer:
                     self.pause=0
                     self.stop()
                     self._timerEnd.wait()
-                if(self._target_function and self.keep_alive):
+                if(self._target_function and self._keep_alive):
                     if(self.pause>0 and not self._timerEnd.isSet()):
                         continue
                     elif(self.pause==0):
@@ -178,7 +178,7 @@ class timer:
         loop_trigger.setDaemon(True)
         loop_timer_trigger=threading.Thread(target=self._loop_timer,args=())
         loop_timer_trigger.setDaemon(True)
-        self.keep_alive=True
+        self._keep_alive=True
         self.counter=0
         self._running_thread=loop_trigger
         self.start_time=dt.datetime.now()
