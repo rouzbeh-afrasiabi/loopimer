@@ -90,7 +90,7 @@ The loop placeholder variable is an open class and you can add new attributes to
 
 <p align="justify">
 
-attributes can be created inside the function or passed to the decorator instead.</p>
+Attributes can be created inside the function or passed to the decorator instead.</p>
 ```python
 from random import randrange
 
