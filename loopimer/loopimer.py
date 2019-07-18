@@ -23,7 +23,7 @@ class timer:
         self.loop=False
         self.print_it=False
         self._start_time=0
-        if(target):
+        if(target is not None):
             self._input=_nslice(target,n_splits)
         else:
             self._input=[0]
