@@ -76,22 +76,17 @@ def test(loop,):
         loop.kill()
 test()  
 ```
-
+<b>Using queue</b>
+<p align="justify">
+A sliceable variable can be passed to the loopimer decorator through the 'target' variable for processing. This sliceable variable is then split into slices of 'n_splits' size. The slices are placed in a queue and can be accessed through the 'sequence' attribute of the loop (loop.squence). This attribute is an instance of <a href='https://docs.python.org/3/library/queue.html'>Queue</a>. The loop automatically stops when no items are left in the queue.
+</p>
 
 ```
-@loopimer(every=1)
-def test(loop,t): 
-    #it is reccommended that you use the s_print() function for printing to avoid 
-    loop.s_print(loop.now,' ',loop.elapsed)
-    if(loop.counter%3==0):
-        #the loop can be delayed by passing a value in seconds
-        loop.pause=20
-    if(loop.counter%5==0):
-        loop.pause=2
-    if(loop.counter==20):
-        #the loop can be terminated by calling kill()
-        loop.kill()
+target=[i for i in range(0,100,1)]
+n_splits=10 
 
-test(t=1)
-        
+@loopimer(target=target,n_splits=n_splits,every=1)
+def test(loop,):
+    print(loop.sequence.get())
+test()      
 ```
