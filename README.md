@@ -90,7 +90,8 @@ def test(loop,):
     print(loop.sequence.get())
 test()      
 ```
-<b>Using queue advanced</b>
+
+<b>Using queue and json</b>
 ```
 import numpy as np
 import pandas as pd
