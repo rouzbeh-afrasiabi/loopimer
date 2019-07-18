@@ -71,6 +71,19 @@ def test(loop,):
         loop.kill()
 test()   
 ```
+
+<b>Stopping the loop using loop elapsed time</b>
+```python
+@loopimer(every=1)
+def test(loop,):
+    print(loop.elapsed,loop.total_seconds)
+    if(loop.total_seconds>=6):
+        print('loopimer')
+        loop.kill()
+test()  
+```
+
+<b>Adding custom variables to the loop</b>
 <p align="justify">
 The loop placeholder variable is an open class and you can add new attributes to it. However, it is important to use attribute names that don't cause an attribute naming conflict with attribute names already being used.
 </p>
@@ -87,16 +100,6 @@ def test(loop,):
 test()     
 ```
 
-<b>Stopping the loop using loop elapsed time</b>
-```python
-@loopimer(every=1)
-def test(loop,):
-    print(loop.elapsed,loop.total_seconds)
-    if(loop.total_seconds>=6):
-        print('loopimer')
-        loop.kill()
-test()  
-```
 <b>Using queue</b>
 <p align="justify">
 A sliceable variable can be passed to the loopimer decorator through the 'target' variable for processing. This sliceable variable is then split into slices of 'n_splits' size. The slices are placed in a queue and can be accessed through the 'sequence' attribute of the loop (loop.squence). This attribute is an instance of <a href='https://docs.python.org/3/library/queue.html'>Queue</a>. The loop automatically stops when no items are left in the queue.
