@@ -105,7 +105,7 @@ def test(loop,):
 test()      
 ```
 
-<b>Using queue without target and n_splits</b>
+<b>Using queue without providing target and n_splits to decorator</b>
 ```python
 import queue
 
