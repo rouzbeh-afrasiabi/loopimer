@@ -93,7 +93,9 @@ test()
 
 
 <b>Using time delays</b>
-
+<p align="justify">
+ By Changing the value of the loop's pause attribute you can introduce time delays. This is especially useful when you reach a rate limit when pulling/pushing data from/to an API. 
+ </p>
 ```python
 target=[i for i in range(0,100,1)]
 n_splits=10
