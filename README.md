@@ -91,7 +91,9 @@ def test(loop,):
 test()      
 ```
 
-<b>using time delays</b>
+
+<b>Using time delays</b>
+
 ```
 target=[i for i in range(0,100,1)]
 n_splits=10
