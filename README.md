@@ -21,7 +21,7 @@ Package for time-controlled execution of a looping function using threading. All
 ```
 from loopimer import *
 ```
-### Simple Usage: 
+### Usage: 
 
 <p align="justify">
 In the simplest usage case, you pass a value in seconds to the decorator through the 'every' variable. This will modify the
@@ -89,4 +89,21 @@ n_splits=10
 def test(loop,):
     print(loop.sequence.get())
 test()      
+```
+
+```
+import numpy as np
+import pandas as pd
+import datetime as dt
+import simplejson as json
+
+df = pd.DataFrame(np.random.randint(0,100,size=(100, 4)), columns=list('ABCD'))
+df['date']=dt.datetime.now()
+
+df_json=json.loads(df.to_json(orient='records'))
+
+@loopimer(target=df_json,n_splits=10,every=1)
+def test(loop,):
+    print(json.dumps(loop.sequence.get()),'\n')
+test()  
 ```
