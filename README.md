@@ -108,10 +108,12 @@ test()
 <b>Using queue without target and n_splits</b>
 ```python
 import queue
+
 new_queue=queue.Queue()
 new_target=[1,2,3,4,5,6,7,8,9]
 for item in new_target:
     new_queue.put(item)
+    
 @loopimer(every=1)
 def test(loop,new_queue):
     if(loop.counter==1):
