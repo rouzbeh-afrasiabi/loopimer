@@ -41,9 +41,7 @@ Please note that when calling the target function we don't pass the placeholder 
 </p>
 
 <p align="justify">
- <b>
 The loop placeholder variable is an open class and you can add new attributes to it. However, it is important to use attribute names that don't cause an attribute naming conflict with attribute names already being used.
- </b>
 </p>
 
 ```python
