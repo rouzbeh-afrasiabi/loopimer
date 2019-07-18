@@ -254,7 +254,7 @@ def test(loop,):
 test()  
 ```
 
-<b>Without using the decorator</b>
+<b>Without using the loopimer decorator</b>
 
 ```python
 def test(loop,):
