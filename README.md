@@ -60,6 +60,7 @@ test()
 <p align="justify">
  It is important to note that the counter starts at 1 instead of 0.
 </p>
+
 ```python
 @loopimer(every=1)
 def test(loop,):
