@@ -91,7 +91,7 @@ A sliceable variable can be passed to the loopimer decorator through the 'target
 ```python
 @loopimer(every=1)
 def test(loop,):
-    print(loop.sequence.get())
+    print(loop.counter,loop.sequence.get())
 test()   
 ```
 
