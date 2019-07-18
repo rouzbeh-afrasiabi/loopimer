@@ -71,6 +71,22 @@ def test(loop,):
         loop.kill()
 test()   
 ```
+<p align="justify">
+The loop placeholder variable is an open class and you can add new attributes to it. However, it is important to use attribute names that don't cause an attribute naming conflict with attribute names already being used.
+</p>
+
+```python
+from random import randrange
+
+@loopimer(every=1)
+def test(loop,):
+    loop.k=randrange(100)
+    print(loop.k)
+    if(loop.k>80):
+        loop.kill()
+test()     
+```
+
 <b>Stopping the loop using loop elapsed time</b>
 ```python
 @loopimer(every=1)
@@ -140,22 +156,6 @@ test()
 ```
 
 <b>Adding your own queue variable to the loop</b>
-
-<p align="justify">
-The loop placeholder variable is an open class and you can add new attributes to it. However, it is important to use attribute names that don't cause an attribute naming conflict with attribute names already being used.
-</p>
-
-```python
-from random import randrange
-
-@loopimer(every=1)
-def test(loop,):
-    loop.k=randrange(10)
-    print(loop.k)
-    if(loop.counter==10):
-        loop.kill()
-test()      
-```
 
 ```python
 import queue
