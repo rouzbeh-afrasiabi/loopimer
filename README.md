@@ -253,3 +253,19 @@ def test(loop,):
     print(json.dumps(loop.sequence.get()),'\n')
 test()  
 ```
+
+<b>Without using the decorator</b>
+
+```python
+def test(loop,):
+    print(loop.counter)
+    if(loop.counter==10):
+        print('loopimer')
+        loop.kill() 
+
+x=[i for i in range(0,10000,1)]
+loop=loopi(target=x,)
+loop.apply_to(test,)
+loop.startTimedLoop(every=1)
+
+```
