@@ -123,6 +123,22 @@ def test(loop,new_queue):
 test(new_queue=new_queue) 
 ```
 
+```python
+import queue
+
+@loopimer(every=1)
+def test(loop):
+    if(loop.counter==1):
+        items=[1,2,3,4,5,6]
+        loop.sequence=queue.Queue()
+        for item in items:
+            loop.sequence.put(item)
+    else:
+        print(loop.counter,loop.sequence.get())
+test()   
+```
+
+
 <b>Using time delays</b>
 <p align="justify">
  By Changing the value of the loop's pause attribute you can introduce time delays. This is especially useful when you reach a rate limit when pulling/pushing data from/to an API. 
