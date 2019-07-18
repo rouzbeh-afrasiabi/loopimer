@@ -1,3 +1,3 @@
 # Auto detect text files and perform LF normalization
 * text=auto
-loopimer/loopimer/example.ipynb linguist-documentation=True
+loopimer/loopimer/example.ipynb linguist-documentation=False
