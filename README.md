@@ -162,6 +162,25 @@ test(new_queue=new_queue)
 ```python
 import queue
 
+new_queue=queue.Queue()
+new_target=[1,2,3,4,5,6,7,8,9]
+for item in new_target:
+    new_queue.put(item)
+    
+@loopimer(every=1,new_queue=new_queue)
+def test(loop,):
+    if(loop.counter==1):
+        loop.sequence=new_queue
+    else:
+        print(loop.counter,loop.sequence.get())
+test()
+
+```
+
+
+```python
+import queue
+
 @loopimer(every=1)
 def test(loop):
     if(loop.counter==1):
@@ -233,4 +252,20 @@ df_json=json.loads(df.to_json(orient='records'))
 def test(loop,):
     print(json.dumps(loop.sequence.get()),'\n')
 test()  
+```
+
+<b>Without using the decorator</b>
+
+```python
+def test(loop,):
+    print(loop.counter)
+    if(loop.counter==10):
+        print('loopimer')
+        loop.kill() 
+
+x=[i for i in range(0,10000,1)]
+loop=loopi(target=x,)
+loop.apply_to(test,)
+loop.startTimedLoop(every=1)
+
 ```
