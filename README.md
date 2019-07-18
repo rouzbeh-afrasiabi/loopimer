@@ -18,7 +18,7 @@ Package for time-controlled execution of a looping function using threading. All
 ## Examples
 
 ### Importing 
-```
+```python
 from loopimer import *
 ```
 ### Usage: 
@@ -28,7 +28,7 @@ In the simplest usage case, you pass a value in seconds to the decorator through
 function that is declared after the decorator to execute every x seconds as an indefinite loop when called.
 </p>
 
-```
+```python
 @loopimer(every=5)
 def test(loop,): 
     print('loopimer')
@@ -49,7 +49,7 @@ The loop starts authomatically when the function is called and will run indefini
 </p>
 
 <b>Stopping the loop</b>
-```
+```python
 @loopimer(every=5)
 def test(loop,): 
     print('loopimer')
@@ -57,7 +57,7 @@ def test(loop,):
 test()    
 ```
 <b>Stopping the loop using loop counter</b>
-```
+```python
 @loopimer(every=1)
 def test(loop,):
     print(loop.counter)
@@ -67,7 +67,7 @@ def test(loop,):
 test()   
 ```
 <b>Stopping the loop using loop elapsed time</b>
-```
+```python
 @loopimer(every=1)
 def test(loop,):
     print(loop.elapsed,loop.total_seconds)
@@ -81,7 +81,7 @@ test()
 A sliceable variable can be passed to the loopimer decorator through the 'target' variable for processing. This sliceable variable is then split into slices of 'n_splits' size. The slices are placed in a queue and can be accessed through the 'sequence' attribute of the loop (loop.squence). This attribute is an instance of <a href='https://docs.python.org/3/library/queue.html'>Queue</a>. The loop automatically stops when no items are left in the queue.
 </p>
 
-```
+```python
 target=[i for i in range(0,100,1)]
 n_splits=10 
 
@@ -94,7 +94,7 @@ test()
 
 <b>Using time delays</b>
 
-```
+```python
 target=[i for i in range(0,100,1)]
 n_splits=10
 
