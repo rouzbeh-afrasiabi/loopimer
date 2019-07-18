@@ -41,21 +41,6 @@ Please note that when calling the target function we don't pass the placeholder 
 </p>
 
 <p align="justify">
-The loop placeholder variable is an open class and you can add new attributes to it. However, it is important to use attribute names that don't cause an attribute naming conflict with attribute names already being used.
-</p>
-
-```python
-from random import randrange
-
-@loopimer(every=1)
-def test(loop,):
-    loop.k=randrange(10)
-    print(loop.k,'loopimer')
-test()     
-```
-
-
-<p align="justify">
 The first variable passed to the target function allows you to control the loop running in the background (called 'loop' in the examples on this page). You can choose any name for this variable, but it is important that you pass a variable name as a placeholder to the target function when declaring your desired function. The first variable name passed to your target function during declaration will always be reserved for the loop that will be running in the background. Upon calling the target function, this placeholder will be linked to the related thread controlling the loop.
 </p>
 
@@ -71,6 +56,21 @@ def test(loop,):
     loop.kill()
 test()    
 ```
+
+<p align="justify">
+The loop placeholder variable is an open class and you can add new attributes to it. However, it is important to use attribute names that don't cause an attribute naming conflict with attribute names already being used.
+</p>
+
+```python
+from random import randrange
+
+@loopimer(every=1)
+def test(loop,):
+    loop.k=randrange(10)
+    print(loop.k,'loopimer')
+test()     
+```
+
 <b>Stopping the loop using loop counter</b>
 <p align="justify">
  It is important to note that the counter starts at 1 instead of 0.
