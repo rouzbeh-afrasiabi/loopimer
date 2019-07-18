@@ -20,7 +20,7 @@ class timer:
                 s = s[n:]
             if len(s) and not truncate:
                 yield (s)
-        self.loop=False
+        self._loop=False
         self.print_it=False
         self._start_time=0
         if(target is not None):
@@ -67,8 +67,8 @@ class timer:
         self._timerEnd.clear()
         while (not self.sequence.empty()):
             
-            if(not self.loop):
-                self.loop=False
+            if(not self._loop):
+                self._loop=False
                 self._timerEnd.set()
                 break
             else:
@@ -83,23 +83,23 @@ class timer:
                     self.s_print(self._strftime,end='\r')
         if (self.print_it):
             self.s_print('\r')
-        self.loop=False
+        self._loop=False
         self._timerEnd.set()
         
 
     def _start(self,print_it=False):
-        if(not self.loop):
+        if(not self._loop):
             self.print_it=print_it
             self._start_time=dt.datetime.now()
 
             main_trigger=threading.Thread(target=self._trigger)
             main_trigger.setDaemon(True)
-            self.loop=True
+            self._loop=True
             self._timer_thread=main_trigger
             main_trigger.start()  
         
     def stop(self,):
-        self.loop=False
+        self._loop=False
     
     def get(self,):
         return(self.sequence.get())
@@ -107,13 +107,13 @@ class timer:
     def kill(self,):
         while (self._keep_alive):
             self._keep_alive=False
-            if(self.loop):
-                self.loop=False
+            if(self._loop):
+                self._loop=False
     
     def _eventTrigger(self,total_seconds):
         while (not self.sequence.empty()):
             if(self._total_seconds>=total_seconds):
-#                 self.s_print('triggered',self.loop)
+#                 self.s_print('triggered',self._loop)
                 self.stop()
                 break
 
