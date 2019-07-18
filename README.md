@@ -269,3 +269,16 @@ loop.apply_to(test,)
 loop.startTimedLoop(every=1)
 
 ```
+
+```python
+def test(loop,t):
+    print(loop.counter+t)
+    if(loop.counter==10):
+        print('loopimer')
+        loop.kill() 
+
+x=[i for i in range(0,10000,1)]
+loop=loopi(target=x,)
+loop.apply_to(test,t=2)
+loop.startTimedLoop(every=1)
+```
