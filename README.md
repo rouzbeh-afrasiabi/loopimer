@@ -138,6 +138,25 @@ def test(loop):
 test()   
 ```
 
+<b>Adding your own queue variable to the loop</b>
+```python
+import queue
+
+@loopimer(every=1)
+def test(loop):
+    if(loop.counter==1):
+        items=[1,2,3,4,5,6]
+        loop.my_queue=queue.Queue()
+        for item in items:
+            loop.my_queue.put(item)
+        
+    else:
+        print(loop.counter,loop.my_queue.get())
+    if(loop.my_queue.qsize()==0):
+        loop.kill()
+test() 
+
+```
 
 <b>Using time delays</b>
 <p align="justify">
