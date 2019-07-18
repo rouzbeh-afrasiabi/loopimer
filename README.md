@@ -91,6 +91,23 @@ def test(loop,):
 test()      
 ```
 
+<b>using time delays</b>
+```
+target=[i for i in range(0,100,1)]
+n_splits=10
+
+@loopimer(target=target,n_splits=n_splits,every=1)
+def test(loop,):
+    print(loop.sequence.qsize(),loop.sequence.get())
+    if(loop.sequence.qsize()==8):
+        loop.pause=20
+test()         
+```
+
+
+
+
+
 <b>Using queue and json</b>
 ```
 import numpy as np
