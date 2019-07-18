@@ -8,7 +8,7 @@ import sys
 import os
 
 
-class timer:
+class loopi:
     def __init__(self,**kwargs):
         
         self.__kwargs=kwargs
@@ -24,8 +24,10 @@ class timer:
         self._loop=False
         self.print_it=False
         self._start_time=0
-        if(('target' in self.__kwargs) and (target is not None)):
-            self._input=_nslice(target,n_splits)
+        self._input=[0]
+        if(('target' in self.__kwargs) and (self.__kwargs['target'] is not None)):
+            if(('n_splits' in self.__kwargs) and (self.__kwargs['n_splits'] is not None)):
+                self._input=_nslice(self.__kwargs['target'],self.__kwargs['n_splits'])
         else:
             self._input=[0]
         self.sequence = queue.Queue()
@@ -195,7 +197,7 @@ class timer:
 class loopimer:
     def __init__(self, *args,**kwargs):
         self.kwargs=kwargs
-        self.ltimer=timer(**self.kwargs)
+        self.ltimer=loopi(**self.kwargs)
     def __call__(self, func):
         def wrapper(*args,**kwargs):
             self.ltimer.apply_to(func,**kwargs)
