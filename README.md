@@ -12,6 +12,12 @@ Package for time-controlled consecutive execution of a function using threading.
  - math
  - sys
  - os
+ 
+## Installation
+```
+pip install git+https://github.com/rouzbeh-afrasiabi/loopimer.git
+```
+
 ## Decorators:
  - loopimer
  
