@@ -1,1 +1,1 @@
-from loopi import *
+from .loopi import *
