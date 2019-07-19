@@ -13,7 +13,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/rouzbeh-afrasiabi/loopimer",
     download_url="https://github.com/rouzbeh-afrasiabi/loopimer/archive/v1.0.1.tar.gz",
-    keywords = ['time', 'loop', 'control','threading','function']
+    keywords = ['time', 'loop', 'control','threading','function'],
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3.6",
