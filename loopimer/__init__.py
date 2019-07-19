@@ -1,1 +1,1 @@
-import .loopimer.loopimer as loopimer
+import ..loopimer.loopimer as loopimer
