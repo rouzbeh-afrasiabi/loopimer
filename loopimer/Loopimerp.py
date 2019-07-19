@@ -194,7 +194,7 @@ class loopi:
         loop_trigger.join()
         
         
-class loopimerx:
+class loopimer:
     def __init__(self, *args,**kwargs):
         self.kwargs=kwargs
         self.ltimer=loopi(**self.kwargs)
