@@ -1,1 +1,1 @@
-from lp import *
+from loopimer.lp import *
