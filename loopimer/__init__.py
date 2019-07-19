@@ -1,1 +1,1 @@
-import loopimer.loopimer 
+import loopimer.loopimer as loopimer
