@@ -40,6 +40,18 @@ def test(loop,):
     print('loopimer')
 test()    
 ```
+
+<p align="justify">
+Setting 'every' to zero will remove any delays between function executions and will convert the loop into a basic loop.
+</p>
+
+```python
+@loopimer(every=0)
+def test(loop,): 
+    print('loopimer')
+test()    
+```
+
 <p align="justify">
  <b>
 Please note that when calling the target function we don't pass the placeholder variable name to the function.
