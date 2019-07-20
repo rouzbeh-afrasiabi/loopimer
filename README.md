@@ -60,12 +60,6 @@ test()
 ```
 
 <p align="justify">
- <b>
-Please note that when calling the target function we don't pass the placeholder variable name to the function.
- </b>
-</p>
-
-<p align="justify">
 The first variable passed to the target function allows you to control the loop running in the background (called 'loop' in the examples on this page). You can choose any name for this variable, but it is important that you pass a variable name as a placeholder to the target function when declaring your desired function. The first variable name passed to your target function during declaration will always be reserved for the loop that will be running in the background. Upon calling the target function, this placeholder will be linked to the related thread controlling the loop.
 </p>
 
@@ -81,6 +75,11 @@ def test(loop,):
     loop.kill()
 test()    
 ```
+<p align="justify">
+ <b>
+Please note that when calling the target function we don't pass the placeholder variable name to the function.
+ </b>
+</p>
 
 <b>Stopping the loop using loop counter</b>
 <p align="justify">
