@@ -116,6 +116,7 @@ The loop placeholder variable is an open class and you can add new attributes to
 <p align="justify">
 Attributes can be created inside the function or passed to the decorator instead.
 </p>
+
 ```python
 from random import randrange
 
@@ -138,7 +139,6 @@ def test(loop,):
         loop.kill()
 test()     
 ```
-
 
 <b>Changing the value of 'every' in the loop function</b>
 <p align="justify">
