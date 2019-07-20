@@ -180,7 +180,7 @@ class loopi:
                 else:
                     break
         
-    def startTimedLoop(self,every=None):
+    def startTimedLoop(self,every=0):
         loop_trigger=threading.Thread(target=self._timedloopTrigger,args=(every,))
         loop_trigger.setDaemon(True)
         loop_timer_trigger=threading.Thread(target=self._loop_timer,args=())
