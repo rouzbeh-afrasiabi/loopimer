@@ -110,7 +110,7 @@ test()
 
 <b>Adding custom variables to the loop</b>
 <p align="justify">
-The loop placeholder variable is an open class and you can add new attributes to it. However, it is important to use attribute names that don't cause an naming conflict with names already being used by the class.
+The loop placeholder variable is an open class and you can add new attributes to it. However, it is important to use attribute names that don't cause a naming conflict with names already being used by the class.
 </p>
 
 <p align="justify">
