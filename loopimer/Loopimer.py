@@ -187,8 +187,8 @@ class loopi:
         loop_trigger.setDaemon(True)
         loop_timer_trigger=threading.Thread(target=self._loop_timer,args=())
         loop_timer_trigger.setDaemon(True)
-	self.every=every
-	self._keep_alive=True
+        self.every=every
+        self._keep_alive=True
         self.counter=0
         self._running_thread=loop_trigger
         self.start_time=dt.datetime.now()
