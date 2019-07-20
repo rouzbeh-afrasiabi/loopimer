@@ -44,7 +44,6 @@ class loopi:
         self._keep_alive=False
         self._target_function=None
         self.pause=0
-        self.every=0
         self._kwargs=None
         self._timer_thread=None
         self._running_thread=None
@@ -187,7 +186,6 @@ class loopi:
         loop_trigger.setDaemon(True)
         loop_timer_trigger=threading.Thread(target=self._loop_timer,args=())
         loop_timer_trigger.setDaemon(True)
-        self.every=every
         self._keep_alive=True
         self.counter=0
         self._running_thread=loop_trigger
