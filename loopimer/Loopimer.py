@@ -44,6 +44,7 @@ class loopi:
         self._keep_alive=False
         self._target_function=None
         self.pause=0
+	self.every=0
         self._kwargs=None
         self._timer_thread=None
         self._running_thread=None
@@ -158,8 +159,9 @@ class loopi:
         self._running_thread=loop_trigger
         loop_trigger.start() 
         
-    def _timedloopTrigger(self,every):
+    def _timedloopTrigger(self,):
         while (not self.sequence.empty()):
+            every=self.every
             if(not self._keep_alive):
                 break
             else:
@@ -181,11 +183,12 @@ class loopi:
                     break
         
     def startTimedLoop(self,every=0):
-        loop_trigger=threading.Thread(target=self._timedloopTrigger,args=(every,))
+        loop_trigger=threading.Thread(target=self._timedloopTrigger,args=())
         loop_trigger.setDaemon(True)
         loop_timer_trigger=threading.Thread(target=self._loop_timer,args=())
         loop_timer_trigger.setDaemon(True)
-        self._keep_alive=True
+	self.every=every
+	self._keep_alive=True
         self.counter=0
         self._running_thread=loop_trigger
         self.start_time=dt.datetime.now()
