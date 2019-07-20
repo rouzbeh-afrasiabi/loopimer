@@ -40,6 +40,7 @@ function that is declared after the decorator to execute every x seconds as an i
 </p>
 
 ```python
+#cauion: infinite loop
 @loopimer(every=5)
 def test(loop,): 
     print('loopimer')
@@ -51,6 +52,7 @@ Setting 'every' to zero will remove any delays between function executions and w
 </p>
 
 ```python
+#caution: infinite loop
 @loopimer(every=0)
 def test(loop,): 
     print('loopimer')
@@ -112,8 +114,8 @@ The loop placeholder variable is an open class and you can add new attributes to
 </p>
 
 <p align="justify">
-
-Attributes can be created inside the function or passed to the decorator instead.</p>
+Attributes can be created inside the function or passed to the decorator instead.
+</p>
 ```python
 from random import randrange
 
@@ -137,7 +139,20 @@ def test(loop,):
 test()     
 ```
 
-
+<b>Changing the value of 'every' in the loop function</b>
+<p align="justify">
+The 'every' variable passed through the decorator is available to the loop. You can change the value of this variable using 'loop.every'.
+</p>
+```python
+@loopimer(every=1)
+def do(loop):
+    print(loop.counter)
+    if(loop.counter>10):
+        loop.every=5
+    if(loop.counter>20):
+        loop.kill()
+do()    
+```
 
 <b>Using queue</b>
 <p align="justify">
