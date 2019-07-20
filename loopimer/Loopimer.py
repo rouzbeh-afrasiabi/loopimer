@@ -44,7 +44,7 @@ class loopi:
         self._keep_alive=False
         self._target_function=None
         self.pause=0
-	self.every=0
+        self.every=0
         self._kwargs=None
         self._timer_thread=None
         self._running_thread=None
