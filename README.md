@@ -139,6 +139,7 @@ def test(loop,):
 test()     
 ```
 
+
 <b>Changing the value of 'every' in the loop function</b>
 <p align="justify">
 The 'every' variable passed through the decorator is available to the loop. You can change the value of this variable using 'loop.every'.
