@@ -198,9 +198,10 @@ class loopi:
 class loopimer:
     def __init__(self, *args,**kwargs):
         self.kwargs=kwargs
-        self.ltimer=loopi(**self.kwargs)
+        self.ltimer=None
     def __call__(self, func):
         def wrapper(*args,**kwargs):
+            self.ltimer=loopi(**self.kwargs)
             self.ltimer.apply_to(func,**kwargs)
             self.ltimer.startTimedLoop(self.kwargs['every'])
             return
