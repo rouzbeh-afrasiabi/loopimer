@@ -194,7 +194,6 @@ class loopi:
         loop_trigger.start() 
         loop_timer_trigger.start()
         loop_trigger.join()
-        return(self.__output)
         
         
 class loopimer:
@@ -205,7 +204,7 @@ class loopimer:
         def wrapper(*args,**kwargs):
             self.ltimer=loopi(**self.kwargs)
             self.ltimer.apply_to(func,**kwargs)
-            result=self.ltimer.startTimedLoop(self.kwargs['every'])
-            return(result)
+            self.ltimer.startTimedLoop(self.kwargs['every'])
+            return(self.__output)
 
         return wrapper
