@@ -52,6 +52,7 @@ class loopi:
         self.now=0
         self.elapsed=dt.timedelta(hours=0,minutes=0,seconds=0,milliseconds=0 ,microseconds=0)
         self.total_seconds=0
+        self.__output=None
         #put slices in queue
         for item in self._input:
             self.sequence.put(item)
@@ -159,7 +160,6 @@ class loopi:
         loop_trigger.start() 
         
     def _timedloopTrigger(self,):
-        _output=None
         while (not self.sequence.empty()):
             every=self.every
             if(not self._keep_alive):
@@ -178,9 +178,8 @@ class loopi:
                         continue
                     elif(self.pause==0):
                         self.counter=self.counter+1
-                        _output=self._target_function(self,**self._kwargs)
+                        self.__output=self._target_function(self,**self._kwargs)
                 else:
-                    return(_output)
                     break
         
     def startTimedLoop(self,every=0):
@@ -195,6 +194,7 @@ class loopi:
         loop_trigger.start() 
         loop_timer_trigger.start()
         loop_trigger.join()
+        return(self.__output)
         
         
 class loopimer:
@@ -205,7 +205,7 @@ class loopimer:
         def wrapper(*args,**kwargs):
             self.ltimer=loopi(**self.kwargs)
             self.ltimer.apply_to(func,**kwargs)
-            self.ltimer.startTimedLoop(self.kwargs['every'])
-            return
+            result=self.ltimer.startTimedLoop(self.kwargs['every'])
+            return(result)
 
         return wrapper
