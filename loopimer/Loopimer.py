@@ -163,6 +163,9 @@ class loopi:
     def _timedloopTrigger(self,):
         while (not self.sequence.empty()):
             every=self.every
+            if(self._output):
+                self._parent._output=self._output
+                self.kill()
             if(not self._keep_alive):
                 break
             else:
@@ -180,9 +183,6 @@ class loopi:
                     elif(self.pause==0):
                         self.counter=self.counter+1
                         self._output=self._target_function(self,**self._kwargs)
-                        if(self._output):
-                            self._parent._output=self._output
-                            self.kill()
                 else:
                     break
         
