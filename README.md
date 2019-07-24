@@ -111,6 +111,7 @@ test()
 <p align="justify">
  Returning a value in the target function will automatically stop the loop
 </p>
+
 ```python
 @loopimer(every=.1)
 def test(loop,): 
@@ -120,7 +121,6 @@ def test(loop,):
 test()
 
 ```
-
 
 <b>Adding custom variables to the loop</b>
 <p align="justify">
