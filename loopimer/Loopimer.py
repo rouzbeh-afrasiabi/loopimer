@@ -204,5 +204,5 @@ class loopimer:
             self.ltimer=loopi(**self.kwargs)
             self.ltimer.apply_to(func,**kwargs)
             self.ltimer.startTimedLoop(self.kwargs['every'])
-
+            return("bang bang bang")
         return wrapper
