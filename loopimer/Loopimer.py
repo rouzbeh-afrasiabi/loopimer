@@ -182,7 +182,7 @@ class loopi:
                         self._output=self._target_function(self,**self._kwargs)
                 else:
                     break
-        self._parent._output="asdhaksjdh"
+        self._parent._output=self._output
         
     def startTimedLoop(self,parent,every=0):
         self._parent=parent
