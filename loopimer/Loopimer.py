@@ -53,7 +53,7 @@ class loopi:
         self.elapsed=dt.timedelta(hours=0,minutes=0,seconds=0,milliseconds=0 ,microseconds=0)
         self.total_seconds=0
         self._output=None
-        self._parent
+        self._parent=None
         #put slices in queue
         for item in self._input:
             self.sequence.put(item)
