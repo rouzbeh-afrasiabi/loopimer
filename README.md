@@ -107,6 +107,21 @@ def test(loop,):
 test()  
 ```
 
+<b>Stopping the loop without using kill</b>
+<p align="justify">
+ Returning a value in the target function will automatically stop the loop
+</p>
+```python
+@loopimer(every=.1)
+def test(loop,): 
+    print('loopimer')
+    if(loop.counter==10):
+        return(True)
+test()
+
+```
+
+
 <b>Adding custom variables to the loop</b>
 <p align="justify">
 The loop placeholder variable is an open class and you can add new attributes to it. However, it is important to use attribute names that don't cause a naming conflict with names already being used by the class.
