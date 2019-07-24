@@ -182,7 +182,7 @@ class loopi:
                         self._output=self._target_function(self,**self._kwargs)
                 else:
                     break
-        self._parent._output=self._output
+        return self._output
         
     def startTimedLoop(self,parent,every=0):
         self._parent=parent
@@ -208,6 +208,6 @@ class loopimer:
         def wrapper(*args,**kwargs):
             self.ltimer=loopi(**self.kwargs)
             self.ltimer.apply_to(func,**kwargs)
-            self.ltimer.startTimedLoop(self,self.kwargs['every'])
-            return(self._output)
+            result=self.ltimer.startTimedLoop(self,self.kwargs['every'])
+            return(result)
         return wrapper
