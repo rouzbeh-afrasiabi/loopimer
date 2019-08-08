@@ -132,7 +132,6 @@ Attributes can be created inside the function or passed to the decorator instead
 </p>
 
 ```python
-from random import randrange
 
 @loopimer(every=1,i=0)
 def test(loop,):
@@ -145,6 +144,8 @@ test()
 ```
 
 ```python
+from random import randrange
+
 @loopimer(every=1)
 def test(loop,):
     loop.k=randrange(100)
