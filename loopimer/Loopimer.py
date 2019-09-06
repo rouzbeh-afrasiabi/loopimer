@@ -69,7 +69,7 @@ class loopi:
         
     def s_print(self,*a, **b):
         with (self._lock):
-            print(*a, **b)
+            print(*a, **b,end="\r")
             
         
     def _trigger(self,):
