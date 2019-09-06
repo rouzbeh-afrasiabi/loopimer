@@ -31,6 +31,7 @@ class loopi:
         else:
             self._input=[0]
         self.sequence = queue.Queue()
+        self.joined=True
         self._minutes=0
         self._seconds=0
         self._hours=0
@@ -198,7 +199,8 @@ class loopi:
         self._parent=parent
         loop_trigger.start() 
         loop_timer_trigger.start()
-        loop_trigger.join()
+        if(self.joined):
+            loop_trigger.join()
         
         
 class loopimer:
