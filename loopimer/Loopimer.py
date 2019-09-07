@@ -188,9 +188,9 @@ class loopi:
                     break
         
     def startTimedLoop(self,parent,every=0):
-        loop_trigger=threading.Thread(target=self._timedloopTrigger,args=())
+        loop_trigger=threading.Thread(name='loopimer_main',target=self._timedloopTrigger,args=())
         loop_trigger.setDaemon(True)
-        loop_timer_trigger=threading.Thread(target=self._loop_timer,args=())
+        loop_timer_trigger=threading.Thread(name='loopimer_timer',target=self._loop_timer,args=())
         loop_timer_trigger.setDaemon(True)
         self._keep_alive=True
         self.counter=0
