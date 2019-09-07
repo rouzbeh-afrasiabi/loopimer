@@ -31,7 +31,7 @@ class loopi:
         else:
             self._input=[0]
         self.sequence = queue.Queue()
-        self.joined=True
+        self._joined=True
         self._minutes=0
         self._seconds=0
         self._hours=0
@@ -208,9 +208,14 @@ class loopimer:
         self.kwargs=kwargs
         self.ltimer=None
         self._output=None
+        self._joined=False
     def __call__(self, func):
         def wrapper(*args,**kwargs):
+            if('joined' in self.kwargs):
+                self._joined=self.kwargs['joined']
+                self.kwargs.pop('joined')
             self.ltimer=loopi(**self.kwargs)
+            self.ltimer._joined=self._joined
             self.ltimer.apply_to(func,**kwargs)
             self.ltimer.startTimedLoop(self,self.kwargs['every'])
             return(self._output)
