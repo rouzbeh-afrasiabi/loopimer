@@ -199,7 +199,7 @@ class loopi:
         self._parent=parent
         loop_trigger.start() 
         loop_timer_trigger.start()
-        if(self.joined):
+        if(self._joined):
             loop_trigger.join()
         
         
