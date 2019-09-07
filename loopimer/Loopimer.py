@@ -208,7 +208,7 @@ class loopimer:
         self.kwargs=kwargs
         self.ltimer=None
         self._output=None
-        self._joined=False
+        self._joined=True
     def __call__(self, func):
         def wrapper(*args,**kwargs):
             if('joined' in self.kwargs):
