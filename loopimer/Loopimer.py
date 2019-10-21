@@ -172,6 +172,7 @@ class loopi:
             else:
                 time.sleep(every)
                 if(self.pause>0):
+                    self.s_print('\r')
                     self.s_print("Process suspended for ", self.pause," seconds")
                     self._start(True)
                     time.sleep(self.pause)
