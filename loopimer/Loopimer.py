@@ -90,7 +90,7 @@ class loopi:
                 self._total_seconds=td.total_seconds()
                 self._strftime="{:0>2}:{:0>2}:{:0>2}".format(int(self._hours),int(self._minutes),int(self._seconds))
                 if (self.print_it): 
-                    self.s_print(self._strftime,end='\r')
+                    self.s_print(self._strftime)
         if (self.print_it):
             self.s_print('\r')
         self._loop=False
