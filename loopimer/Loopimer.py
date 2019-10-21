@@ -90,7 +90,6 @@ class loopi:
                 self._total_seconds=td.total_seconds()
                 self._strftime="{:0>2}:{:0>2}:{:0>2}".format(int(self._hours),int(self._minutes),int(self._seconds))
                 if (self.print_it): 
-                    self.s_print('\r')
                     self.s_print(self._strftime)
         if (self.print_it):
             self.s_print('\r')
@@ -173,8 +172,7 @@ class loopi:
             else:
                 time.sleep(every)
                 if(self.pause>0):
-                    self.s_print('\r')
-                    self.s_print("Process suspended for ", self.pause," seconds")
+#                     self.s_print("Process suspended for ", self.pause," seconds")
                     self._start(True)
                     time.sleep(self.pause)
                     self.pause=0
